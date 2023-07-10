@@ -4,6 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+<style>
+    #btn{
+        text-decoration: none;
+        background-color: yellow;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    #btn:hover{
+        background-color: white;
+        color: orangered;
+    }
+
+    #delBtn{
+        background-color: green;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    #delBtn:hover{
+        background-color: red;
+        color: white;
+    }
+</style>
 </head>
 <body>
     <h1>Welcome to Mysql Class</h1>
@@ -11,12 +35,13 @@
 <h1>No Items Available</h1>
   <%  } 
   else{ %>
-<table>
+<table border="2px">
     <tr>
         <th>ID</th>
         <th>Item</th>
         <th>Price</th>
         <th>Image</th>
+        <th colspan="2">Actions</th>
     </tr>
     <% for(let Items of Record){ %>
         <tr>
@@ -24,6 +49,15 @@
             <td><%=Items.item %></td>
             <td><%=Items.price %></td>
             <td><img src="<%=Items.image %>" alt="item" width="150px" height="150px"></td>
+            <td>
+                <a href="/update-product/<%=Items.id %>" id="btn">Update</a>
+            </td>
+            <td>
+                <form action="/delete-product" method="post">
+                    <input type="hidden" name="Id" value="<%= Items.id%>">
+                    <button type="submit" id="delBtn">Delete</button>
+                </form>
+            </td>
         </tr>
    <% } %>
 </table>

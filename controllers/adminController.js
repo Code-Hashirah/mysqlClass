@@ -22,3 +22,27 @@ exports.addProduct=(req,res)=>{
         res.redirect('/')
     })
 }
+
+exports.updateProductPage=(req,res)=>{
+  let id=req.params.id
+  db.execute('SELECT * FROM products WHERE id=?', [id]).then(record=>{
+    res.render('updateProduct', {Product:record[0]})
+  })
+}
+
+
+exports.updateProduct=(req,res)=>{
+const {Id, Item, Price, Image}=req.body
+db.execute('UPDATE products SET item=?, price=?, image=? WHERE id=?',[Item, Price, Image, Id]).then(response=>{
+  res.redirect('/')
+})
+}
+
+exports.deleteProduct=(req,res)=>{
+  const {Id}=req.body;
+  db.execute('DELETE FROM products WHERE id=?',[Id]).then(result=>{
+    res.redirect(302,'/')
+  }).catch(err=>{
+    console.log(err)
+  })
+}

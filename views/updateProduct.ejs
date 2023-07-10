@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+          #btn{
+        background-color: yellow;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 5px;
+    }
+    #btn:hover{
+        background-color: white;
+        color: orangered;
+    }
+    </style>
+</head>
+<body>
+    <h2>Update product</h2>
+    <form action="/update-product" method="post">
+        <div>
+            <label for="">Item</label>
+            <input type="hidden" name="Id" value="<%=Product[0].id %>">
+            <input type="text" value="<%= Product[0].item %>" name="Item">
+        </div>
+        <div>
+            <label for="">Price</label>
+            <input type="text" value="<%= Product[0].price %>" name="Price">
+        </div>
+        <div>
+            <label for="">Image link</label>
+            <input type="text" value="<%= Product[0].image %>" name="Image">
+        </div>
+        <button type="submit" id="btn">Update</button>
+    </form>
+</body>
+</html>
